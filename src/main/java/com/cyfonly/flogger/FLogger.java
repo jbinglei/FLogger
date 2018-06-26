@@ -14,11 +14,24 @@ public class FLogger {
 	
 	private static FLogger instance;
 	private static LogManager logManager;
-	
+
+	/*
+	* @Description: https://www.cnblogs.com/jiangyi666/p/5665130.html
+	* 注意静态代码块和静态方法的区别
+	* 有些代码必须在项目启动的时候就执行的时候,需要使用静态代码块,这种代码是主动执行的
+	* @Author: jbinglei
+	* @Date: 22:42 2018/6/26
+	*/
 	static {
 		logManager = LogManager.getInstance();
 	}
-	
+
+	/*
+	* @Description:https://blog.csdn.net/wgw335363240/article/details/5854402
+	* 当jvm关闭的时候，会执行系统中已经设置的所有通过方法addShutdownHook添加的钩子
+	* @Author: jbinglei
+	* @Date: 22:39 2018/6/26
+	*/
 	public FLogger(){
 		Runtime.getRuntime().addShutdownHook(new Thread(new Runnable() {
 			@Override
@@ -27,7 +40,15 @@ public class FLogger {
 			}
 		}));
 	}
-	
+
+	/* 
+	* @Description: https://www.cnblogs.com/shipengzhi/articles/2223100.html
+	*  注意区分 synchronized 和 static synchronized
+	*  synchronized是对类的当前实例进行加锁，
+	*  static synchronized是限制线程同时访问jvm中该类的所有实例同时访问对应的代码快。
+	* @Author: jbinglei 
+	* @Date: 22:35 2018/6/26
+	*/ 
 	public static synchronized FLogger getInstance(){
 		if(instance == null){
 			instance = new FLogger();
@@ -102,6 +123,7 @@ public class FLogger {
 			sb.append("] ");
 			sb.append(logMsg);
 			sb.append("\n");
+			//关键步骤
 			logManager.addLog(logFileName, sb);
 			
 			//错误信息强制打印到控制台；若 CONSOLE_PRINT 配置为 true，也将日志打印到控制台

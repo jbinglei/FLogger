@@ -34,6 +34,11 @@ public final class Constant {
 	/**日志文件路径*/
 	public static String CFG_LOG_PATH = CommUtil.getConfigByString("LOG_PATH","./log");
 	
+	/* 
+	* @Description: 学习该写法 
+	* @Author: jbinglei 
+	* @Date: 23:01 2018/6/26 
+	*/ 
 	/** 日志类型描述map*/
 	@SuppressWarnings("serial")
 	public static Map<String, String> LOG_DESC_MAP = new HashMap<String, String>(){{
