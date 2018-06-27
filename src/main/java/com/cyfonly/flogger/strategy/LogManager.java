@@ -21,7 +21,14 @@ public class LogManager extends Thread {
 	
 	/** 单例 */
 	private static LogManager instance = null;
-	
+
+	/*
+	* @Description: https://www.cnblogs.com/zx-bob-123/archive/2017/12/26/8118074.html
+	* 注意HashMap HashTable ConcurrentHashMap
+	* 线程不安全  线程安全(已淘汰) 线程安全(分割策略)
+	* @Author: jbinglei
+	* @Date: 21:52 2018/6/27
+	*/
 	/** 日志文件列表 */
 	private Map<String,LogFileItem> logFileMap = new ConcurrentHashMap<String,LogFileItem>();
 	
@@ -53,6 +60,12 @@ public class LogManager extends Thread {
 		return instance;
 	}
 	
+	/* 
+	* @Description: https://blog.csdn.net/shenshibaoma/article/details/53009505
+	* 理解synchronized(this)的使用
+	* @Author: jbinglei 
+	* @Date: 22:25 2018/6/27 
+	*/ 
 	/**
 	 * 添加日志
 	 * @param logFileName  日志文件名称
